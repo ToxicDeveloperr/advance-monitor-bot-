@@ -19,6 +19,9 @@ import config
 # add near other imports
 from aiohttp import web
 
+from pyrogram import Client
+from config import BOT_TOKEN, API_ID, API_HASH, TMP_DIR
+
 
 # ---------- logging ----------
 logging.basicConfig(level=logging.INFO)
@@ -379,8 +382,15 @@ async def worker_group_processor(client: Client):
             finally:
                 group_queue.task_done()
 
-# ---------- Pyrogram client & handlers ----------
-app = Client("monitor-bot", bot_token=config.BOT_TOKEN)
+# Pyrogram bot client initialization
+app = Client(
+    name="bot_session",      # session file का नाम
+    bot_token=BOT_TOKEN,
+    api_id=API_ID,
+    api_hash=API_HASH,
+    workdir=TMP_DIR          # session file save करने का path
+)
+
 
 @app.on_message(filters.channel)
 async def on_channel_post(client: Client, message: Message):
