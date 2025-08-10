@@ -44,7 +44,7 @@ MAX_GLOBAL_CONCURRENT_DOWNLOADS = int(
 MAX_CONCURRENT_PER_GROUP = int(os.getenv("MAX_CONCURRENT_PER_GROUP", "5"))
 DOWNLOAD_CHUNK_SIZE = int(os.getenv("DOWNLOAD_CHUNK_SIZE", "524288"))
 
-TMP_DIR = os.getenv("TMP_DIR", "./tmp")
+TMP_DIR = os.getenv("TMP_DIR", "/data")
 
 # ✅ Debug print to confirm env loading (will show only safe vars)
 print(f"[CONFIG] BOT_TOKEN loaded: {'Yes' if BOT_TOKEN else 'No'}")
